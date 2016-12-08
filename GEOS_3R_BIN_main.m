@@ -3,12 +3,12 @@ clc
 
 %fclose(instrfind)
 
-fead_data_from='GEOS';
+%fead_data_from='GEOS';
 fead_data_from='file';
 
 if(fead_data_from=='GEOS')
     %настройки COM порта
-    Num_com_port='COM67';
+    Num_com_port='COM31';
     baud=115200;
     com_port=serial(Num_com_port, 'BaudRate', baud);
 else
