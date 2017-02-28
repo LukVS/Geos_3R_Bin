@@ -242,7 +242,7 @@ while (1) % обработка данных с заданного КА
     plot(phData.time, phData.cycle_d,'r')
     grid on
     xlabel('time, sec');
-    ylabel('phase, cycles');
+    ylabel('phase, cycles F_d');
     
     subplot(2,2,2)
     plot(phData.time, phData.SNR)
@@ -254,14 +254,14 @@ while (1) % обработка данных с заданного КА
     plot(apr.time, apr.DataPhase2,'b')
     grid on
     xlabel('time, sec');
-    ylabel('d phase, cycles');
+    ylabel('\phi_0 , cycles');
     
     subplot(2,2,4)
     %    plot(phData.time, phData.phase, 'b', apr.time, apr.DataFit,'r')
     plot(apr.time, apr.phase, 'b', apr.time, apr.DataFit,'r')
     grid on
     xlabel('time, sec');
-    ylabel('d phase, ');
+    ylabel('phase: red-output Geos, blue-apr polynomial 2, cycles');
     drawnow
     %    end
     
@@ -276,13 +276,17 @@ while (1) % обработка данных с заданного КА
     % grid on
 
     hold off
-    plot(phData.time, phData.range-phData.range(ind) - (phData.phase-phData.phase(ind))./(F0_gps+phData.Doppler(ind)/c*F0_gps)*c, 'r');
+    plot(phData.time, phData.range-phData.range(ind) - ...
+        (phData.phase-phData.phase(ind))./(F0_gps+phData.Doppler(ind)/c*F0_gps)*c, 'r');
     grid on
     hold on
     
     plot(phData.time, (phData.ADR-phData.ADR(ind))*F0_gps/c*2, 'k');
     grid on
-
+    
+    xlabel('time, sec');
+    ylabel('red: R(t)-R(t=T_{end}), k: \Delta\Phi*\lambda , m');
+    
     hold off
 end
 

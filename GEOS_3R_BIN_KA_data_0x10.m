@@ -19,7 +19,8 @@ if(ind>0)
     Doppler       = GEOS_3R_BIN_bin2num(data(4*(-5+14*ind)-3 : 4*(-4+14*ind)),'double');
     Range         = GEOS_3R_BIN_bin2num(data(4*(-7+14*ind)-3 : 4*(-6+14*ind)),'double');
     ADR           = GEOS_3R_BIN_bin2num(data(4*(-3+14*ind)-3 : 4*(-2+14*ind)),'double');
-    H_liter       = mod(data(4*(-9+14*ind)-2),2^7)*(-1)^(fix(data(4*(-9+14*ind)-2)/2^7));
+    H_liter       = (data(4*(-9+14*ind)-2)-256)*(fix(data(4*(-9+14*ind)-2)/2^7))+...
+                    data(4*(-9+14*ind)-2)*(fix(data(4*(-9+14*ind)-2)/2^7)-1);
     type          = GEOS_3R_BIN_bin2num(data(4*(-9+4+14*ind) + (-3:0)) , 'int') ;
 else
     SignalToNoise = nan;
