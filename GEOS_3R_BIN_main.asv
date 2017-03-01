@@ -312,7 +312,7 @@ dp=polyval( polyfit(t(ind_p), diff_p, 2), t(ind_p));
 tmp=diff(r)./diff(t);
 diff_r=tmp(ind_p);
 dr=polyval( polyfit(t(ind_p), diff_r, 2), t(ind_p));
-V_apr=polyval( polyfit(t, -v-drift, 2), t);
+V_apr=polyval( polyfit(t(ind_p), diff_r, 2), t(ind_p));
 
 figure(3);
 plot(t(ind_p), diff_r, 'b',t(ind_p), dr, 'b.-')
@@ -333,12 +333,12 @@ figure(6);
 plot(t(ind_p), diff_p, 'k',t(ind_p), dp, 'y.-')
 grid on
 xlabel('time, sec');
-ylabel('c/f_0*d\Phi/dt, m/sec');
+ylabel('dR(t)/dt, m/sec');
 figure(7);
 plot(t, -v-drift, 'r',t, V_apr, 'y.-')
 grid on
 xlabel('time, sec');
-ylabel('V_{dopler}, m/sec');
+ylabel('dR(t)/dt, m/sec');
 %___ figure (4)
 %доработка figure (2)
 figure (4);
