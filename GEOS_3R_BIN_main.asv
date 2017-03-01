@@ -303,7 +303,7 @@ p = phData.phase(find(~isnan(phData.phase)):end)'/(F0_gln + dF_gln*10)*c;%  * (1
 % grid on
 
 dp=polyval( polyfit(t(1:end-1), diff(p)./diff(t), 1), t(1:end-1));
-dr=polyval( polyfit(t(1:end-1), diff(r)./diff(t), 4), t(1:end-1));
+dr=polyval( polyfit(t(1:end-1), diff(r)./diff(t), 1), t(1:end-1));
 
 figure(3);
 plot(t(1:end-1), dr, 'b')
@@ -312,9 +312,7 @@ grid on
 
 plot(t, -v-drift, 'r')
 
-plot(t(1:end-1), diff(p)./diff(t), 'k')
-xlabel('time, sec');
-ylabel('b: dR(t)/dt, k: c/f_0*d\Phi/dt, r: V_{dopler}, m/sec');
+plot(t(1:end-1), dp, 'k')
 %%%%%%%%%
 % figure(5);
 % plot(t(1:end-1), diff(r)./diff(t), 'b')
