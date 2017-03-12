@@ -19,13 +19,13 @@ if (fead_data_from=='GEOS')      % Настройки из порта
     fopen(stream); 
     system('stty -F /dev/ttyUSB0 115200 raw');
 else                             % Работа из файла
-    name_bin_file = 'bin_data_file/geos_3MR_F_1_Hz.bin';
+    name_bin_file = 'bin_data_file/21.bin';
     stream = fopen(name_bin_file, 'r');
 end
 
 
 % Что обрабатывать
-phData.NumPoint = 1000;          % Максимальное число точек на графике
+phData.NumPoint = 2000;          % Максимальное число точек на графике
 phData.NumPointPoiskKA=5;        % Число точек для поиска нужного КА
 phData.SatMax = 96;       % Число спутников 
 
@@ -325,20 +325,25 @@ xlabel('time, sec');
 ylabel('b: dR(t)/dt, k: c/f_0*d\Phi/dt, r: V_{dopler}, m/sec');
 %%%%%%%%%
 figure(5);
-plot(t(ind_p), diff_r, 'b',t(ind_p), dr, 'y.-')
+plot(t(ind_p), diff_r-dr, 'b')
 grid on
 xlabel('time, sec');
 ylabel('dR(t)/dt, m/sec');
 figure(6);
-plot(t(ind_p), diff_p, 'k',t(ind_p), dp, 'y.-')
+plot(t(ind_p), diff_p-dp, 'k')
 grid on
 xlabel('time, sec');
 ylabel('c/f_0*d\Phi/dt, m/sec');
 figure(7);
-plot(t, -v-drift, 'r',t, V_apr, 'y.-')
+plot(t, -v-drift-V_apr, 'r')
 grid on
 xlabel('time, sec');
 ylabel('V_{dopler}, m/sec');
+figure(8)
+plot(t, -v-drift-V_apr, 'r', t(ind_p), diff_p-dp, 'k');
+grid on
+xlabel('time, sec');
+ylabel('r: V_{dopler}; k: c/f_0*d\Phi/dt, m/sec');
 %___ figure (4)
 %доработка figure (2)
 figure (4);
